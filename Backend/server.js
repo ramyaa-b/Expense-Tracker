@@ -11,10 +11,15 @@ const authRoutes = require("./routes/authRoutes");
 
 connectDB(); // Import and connect to MongoDB
 
+
 // Load environment variables from .env file
 dotenv.config();
 
 const app = express();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 app.use(
     cors({
@@ -24,7 +29,6 @@ app.use(
     })
 );
 
-app.use(express.json());
 
 app.use("/api/v1/auth", authRoutes);
 
